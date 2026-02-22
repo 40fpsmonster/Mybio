@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Матрица-фон (еле заметная) */
         #matrix {
             position: fixed;
             top: 0;
@@ -39,7 +38,6 @@
             display: block;
         }
 
-        /* Белая обводка как была (сосная) */
         body::after {
             content: '';
             position: fixed;
@@ -173,21 +171,17 @@
     </style>
 </head>
 <body>
-    <!-- Холст для матрицы (едва заметной) -->
     <canvas id="matrix"></canvas>
 
     <div class="card">
-        <!-- Фото -->
         <div class="avatar">
             <img src="4358ca8f8e14c253a846eb80cdc495a8.jpg" alt="Фото #Вшивый">
         </div>
 
-        <!-- Никнейм -->
         <div class="nickname">
             <h1>#Вшивый aka 40fpsmonster</h1>
         </div>
 
-        <!-- Кнопки -->
         <div class="links-grid">
             <a href="https://t.me/schoolshooter2016" target="_blank" rel="noopener noreferrer" class="link-button">
                 Telegram
@@ -212,7 +206,6 @@
     </div>
 
     <script>
-        // Матрица (еле заметная)
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
 
