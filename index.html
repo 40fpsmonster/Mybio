@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40fpsmonster · bio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            color: #ededed;
+        }
+
+        .card {
+            max-width: 1000px;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid #ffffff;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2),
+                        0 0 60px rgba(255, 255, 255, 0.1),
+                        inset 0 0 15px rgba(255,255,255,0.05);
+            border-radius: 32px;
+            padding: 2.5rem 2.5rem;
+            transition: box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 45px rgba(255, 255, 255, 0.3), 0 0 90px rgba(255, 255, 255, 0.15);
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 1.8rem;
+        }
+
+        .avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background-color: #1e1e1e;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 20px #ffffffb0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3a3a3a;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            background-image: url('https://i.imgur.com/EH8Inl6.jpeg');
+            background-color: #2a2a2a;
+            position: relative;
+        }
+
+        .avatar::after {
+            content: "";
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #ccc;
+            background: #0a0a0a80;
+            padding: 2px 6px;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+        }
+
+        .avatar[style*="background-image"]::after {
+            content: "";
+        }
+
+        .title-name {
+            font-size: 2.8rem;
+            font-weight: 450;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-shadow: 0 0 20px #ffffff80;
+        }
+
+        .title-name span {
+            font-weight: 300;
+            color: #dddddd;
+            text-shadow: 0 0 10px #ffffff60;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 2rem;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: inset 0 0 10px #0a0a0a, 0 4px 15px rgba(0,0,0,0.6);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ccc;
+            font-weight: 400;
+        }
+
+        .info-value {
+            font-size: 1.35rem;
+            font-weight: 450;
+            color: white;
+            word-break: break-word;
+            text-shadow: 0 0 6px #ffffffc0;
+        }
+
+        .sections-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        .block {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: inset 0 0 6px #0a0a0a, 0 6px 14px #00000080;
+        }
+
+        .block-title {
+            font-size: 1.6rem;
+            font-weight: 430;
+            letter-spacing: 2px;
+            color: #f0f0f0;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px #ffffffb0;
+            border-left: 4px solid #ffffff;
+            padding-left: 1rem;
+        }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2.2rem;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            min-width: 140px;
+        }
+
+        .tool-label {
+            font-size: 0.75rem;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #ccc;
+        }
+
+        .tool-value {
+            font-size: 1.2rem;
+            color: white;
+            text-shadow: 0 0 5px #ffffffa0;
+        }
+
+        .servers-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 2rem 3.5rem;
+        }
+
+        .server-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .group-label {
+            font-size: 0.8rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .server-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+        }
+
+        .server-chip {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid #6a6a6a;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            color: #f0f0f0;
+            box-shadow: 0 0 10px #ffffff30;
+            transition: 0.1s;
+        }
+
+        .server-chip:hover {
+            border-color: #fff;
+            box-shadow: 0 0 18px white;
+        }
+
+        .contacts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 3rem;
+        }
+
+        .contact-line {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+        }
+
+        .contact-line .key {
+            font-size: 0.9rem;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 40px;
+        }
+
+        .contact-line .value a {
+            color: #b0b0ff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-bottom: 1px solid transparent;
+            transition: 0.15s;
+        }
+
+        .contact-line .value a:hover {
+            color: white;
+            border-bottom: 1px solid white;
+            text-shadow: 0 0 12px #ffffff;
+        }
+
+        .contact-line .value span {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .tag-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .hashtag-badge {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1.5px solid #ffffff;
+            padding: 0.5rem 2rem;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            color: #ffe066;
+            text-shadow: 0 0 20px #ffd966;
+            box-shadow: 0 0 15px #ffffff70;
+        }
+
+        .meta-note {
+            color: #ccc;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .disclaimer {
+            margin-top: 1.8rem;
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: right;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+            padding-top: 1rem;
+            letter-spacing: 0.2px;
+        }
+
+        @media (max-width: 700px) {
+            .card { padding: 1.8rem; }
+            .profile-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .tools-grid { flex-direction: column; gap: 0.8rem; }
+            .servers-row { flex-direction: column; gap: 1.5rem; }
+            .contacts-grid { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="profile-row">
+            <div class="avatar" title=" "></div>
+            <div class="title-name">bio <span>40fpsmonster</span></div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">NAME</span>
+                <span class="info-value">40fpsmonster</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">FROM</span>
+                <span class="info-value">Latvia</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">CALL</span>
+                <span class="info-value">+380  /  +1  /  +91</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">AGE</span>
+                <span class="info-value">1#</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">ROLE</span>
+                <span class="info-value">vibecoder / paster</span>
+            </div>
+        </div>
+
+        <div class="sections-container">
+            <div class="block">
+                <div class="block-title">TOOLS</div>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <span class="tool-label">EDITOR</span>
+                        <span class="tool-value">VS Code</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-label">CLIENT</span>
+                        <span class="tool-value">Celestial beta · LabyMod 1.16.5</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-label">STACK</span>
+                        <span class="tool-value">python / html / java</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-title">SERVERS</div>
+                <div class="servers-row">
+                    <div class="server-group">
+                        <span class="group-label">main</span>
+                        <div class="server-list">
+                            <span class="server-chip">HolyTime</span>
+                            <span class="server-chip">SpookyTime</span>
+                            <span class="server-chip">Funtime</span>
+                        </div>
+                    </div>
+                    <div class="server-group">
+                        <span class="group-label">other</span>
+                        <div class="server-list">
+                            <span class="server-chip">triadamc</span>
+                            <span class="server-chip">gulpvp</span>
+                            <span class="server-chip">funsky</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-title">CONTACT</div>
+                <div class="contacts-grid">
+                    <div class="contact-line"><span class="key">TG</span> <span class="value"><a href=">t.me/xikik0mori" target="_blank">@Xikik0mori</a></span></div>
+                    <div class="contact-line"><span class="key">DS</span> <span class="value"><span>@neesosyn112</span></span></div>
+                    <div class="contact-line"><span class="key">GH</span> <span class="value"><a href="https://github.com/40fpsmonster" target="_blank">40fpsmonster</a></span></div>
+                    <div class="contact-line"><span class="key">No meta</span> <span class="value"><a href="https://t.me/nonehello" target="_blank">click</a></span></div>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="block-title">TAG</div>
+                <div class="tag-container">
+                    <span class="hashtag-badge">#В‌ш‌и‌в‌ы‌й‌</span>
+                    <span class="meta-note">[♪] no meta</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer">
+            !! К км докса/осинта/свата никак не отношусь.
+        </div>
+    </div>
+</body>
+</html>
